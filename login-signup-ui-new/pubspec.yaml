@@ -1,0 +1,28 @@
+name: login
+description: A new Flutter project.
+
+dependencies:
+  page_indicator: ^0.2.0
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.0
+  shared_preferences: ^0.5.4+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo.png
+    - assets/alucard.jpg
+    - assets/hi-gradient-transbglogoonly.png
+    - assets/sitting-2.png
+    - assets/standing-2@2x.png
+    - assets/logo.png
+    - assets/truddy.png
+  fonts:
+      - family: Nunito
+        fonts:
+          - asset: assets/Nunito.ttf
