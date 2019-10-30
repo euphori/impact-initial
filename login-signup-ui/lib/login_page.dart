@@ -4,6 +4,7 @@ import 'package:login/signup_page.dart';
 import 'package:login/forgot_password.dart';
 import 'package:login/Slide.dart';
 import 'package:login/Swipe.dart';
+import 'preferences_helper.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -12,26 +13,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  String _email;
+  String _password;
+
   @override
   Widget build(BuildContext context) {
-    final logo = Padding(
-      padding: EdgeInsets.only(),
-      child: Image(
+    final logo = Image(
         image: AssetImage('assets/logo.png'),
-      ),
+
     );
 
-    final emailWord = Padding(
-      padding: EdgeInsets.only(right: 220),
-      child: Text(
+    final emailWord = Text(
         'Email',
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
-      ),
+        style: TextStyle(fontSize: 18.0, color: Colors.white, fontFamily: 'Nunito'),
+
     );
 
     final email = TextFormField(
+      onSaved: (value) => _email = value,
       style: TextStyle(
         color: Colors.blueGrey,
+        fontFamily: 'Nunito',
       ),
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
@@ -43,17 +46,17 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    final passwordWord = Padding(
-      padding: EdgeInsets.only(right: 193),
-      child: Text(
+    final passwordWord = Text(
         'Password',
-        style: TextStyle(fontSize: 18.0, color: Colors.white),
-      ),
+        style: TextStyle(fontSize: 18.0, color: Colors.white, fontFamily: 'Nunito'),
+
     );
 
     final password = TextFormField(
+      onSaved: (value) => _password = value,
       style: TextStyle(
         color: Colors.blueGrey,
+          fontFamily: 'Nunito',
       ),
       autofocus: false,
       obscureText: true,
@@ -68,27 +71,55 @@ class _LoginPageState extends State<LoginPage> {
     final loginButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: RaisedButton(
+        onPressed: () async {
+          final form = _formKey.currentState;
+          form.save();
+
+          String _kemail = 'email:' + _email;
+          String _kpassword = 'password:' + _email;
+          String tempEmailValue;
+          String tempPasswordValue;
+
+          await Prefs.getEmail(_kemail).then((value) {
+            setState(() {
+              tempEmailValue = value;
+            });
+          });
+          await Prefs.getPassword(_kpassword).then((value) {
+            setState(() {
+              tempPasswordValue = value;
+            });
+          });
+
+          if (_password == tempPasswordValue && (tempEmailValue != '' && tempPasswordValue != '')) {
+            print('log-in successful');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          }
+          else {
+            print('log-in failed');
+          }
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(10),
         color: Colors.blueGrey,
-        child: Text('Log In', style: TextStyle(color: Colors.white)),
+        child: Text('Log In', style: TextStyle(color: Colors.white, fontFamily: 'Nunito')),
       ),
     );
 
-    final signupStatement = Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(
+    final signupStatement = Text(
         'Dont have an account yet?',
-        style: TextStyle(color: Colors.white),
-      ),
+        style: TextStyle(color: Colors.white, fontFamily: 'Nunito'),
     );
 
     final signup = FlatButton(
       child: Text(
         'Sign up here.',
-        style: TextStyle(color: Colors.yellowAccent),
+        style: TextStyle(color: Colors.yellowAccent, fontFamily: 'Nunito'),
       ),
       onPressed: () {
         Navigator.push(
@@ -99,8 +130,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final body = Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.all(28.0),
+      padding: EdgeInsets.only(left: 40.0, right: 40.0),
       decoration: BoxDecoration(
         gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -108,13 +138,13 @@ class _LoginPageState extends State<LoginPage> {
             colors: [Colors.grey, Colors.blueGrey]
         ),
       ),
-      child: Column(
-        children: <Widget>[logo, emailWord, email, passwordWord, password, loginButton, signupStatement, signup],
-      ),
+        child: Column(
+          children: <Widget>[logo, emailWord, email, SizedBox(height: 20), passwordWord, password, loginButton, signupStatement, signup],
+        ),
+
     );
 
     return Scaffold(
-      resizeToAvoidBottomPadding: true,
       body: body,
     );
   }
