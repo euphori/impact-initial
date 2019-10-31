@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:login/login_page.dart';
@@ -155,6 +156,9 @@ class HomePage extends StatelessWidget {
               color: Colors.orange,
               borderColor: Colors.grey,
               starCount: starCount,
+              onRatingChanged: (double value) {
+                this.rating = value;
+              },
             ),
           ],
         ),
@@ -424,15 +428,16 @@ class HomePage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(top: 15),
-                        child: RaisedButton(
+                        child: OutlineButton(
+                          borderSide: BorderSide(color: Colors.white),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24),
                           ),
                           onPressed: () {},
                           padding: EdgeInsets.all(5),
-                          color: Colors.white,
+                          // color: Colors.white,
                           child: Text('Heat Map',
-                              style: TextStyle(color: Colors.blueGrey)),
+                              style: TextStyle(color: Colors.white)),
                         ),
                       ),
                       Padding(
