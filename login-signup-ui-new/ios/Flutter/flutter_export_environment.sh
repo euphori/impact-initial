@@ -1,10 +1,8 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\Kenj Goco\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\Kenj Goco\AndroidStudioProjects\putraxor-flutter-login-ui-67ef6e0"
-export "FLUTTER_TARGET=lib\main.dart"
+export "FLUTTER_ROOT=/home/xaiphyr/workstation/Flutter"
+export "FLUTTER_APPLICATION_PATH=/home/xaiphyr/workstation/impact-initial/login-signup-ui-new"
+export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
-export "SYMROOT=${SOURCE_ROOT}/../build\ios"
-export "FLUTTER_FRAMEWORK_DIR=C:\Users\Kenj Goco\flutter\bin\cache\artifacts\engine\ios"
-export "FLUTTER_BUILD_NAME=1.0.0"
-export "FLUTTER_BUILD_NUMBER=1"
+export "SYMROOT=${SOURCE_ROOT}/../build/ios"
+export "FLUTTER_FRAMEWORK_DIR=/home/xaiphyr/workstation/Flutter/bin/cache/artifacts/engine/ios"

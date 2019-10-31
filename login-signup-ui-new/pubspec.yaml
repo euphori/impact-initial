@@ -8,6 +8,7 @@ dependencies:
   cupertino_icons: ^0.1.0
   shared_preferences: ^0.5.4+3
   sliding_up_panel: ^0.3.6
+  flutter_rating: ^0.0.2
 
 dev_dependencies:
   flutter_test:

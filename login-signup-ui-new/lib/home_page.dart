@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:login/login_page.dart';
+import 'package:flutter_rating/flutter_rating.dart';
 
 class HomePage extends StatelessWidget {
   static String tag = 'home-page';
+  double rating = 0;
+  int starCount = 5;
 
   @override
   Widget build(BuildContext context) {
-    final ratings_and_reviews = Padding(
+
+    final ratings_and_reviews_title = Padding(
       padding: EdgeInsets.only(top: 20.0),
       child: Text(
         'RATINGS AND REVIEWS',
@@ -109,78 +113,79 @@ class HomePage extends StatelessWidget {
 
     final addButton = Padding(
       padding: EdgeInsets.only(left: 200.0),
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        padding: EdgeInsets.all(12),
-        color: Colors.blueGrey,
-        child: Text('ADD', style: TextStyle(color: Colors.white)),
-        onPressed: () {
-//          Navigator.push(
-//              context,
-//              MaterialPageRoute(builder: (context) => Add()));
-        },
+      child: Chip(
+        label: Text('ADD'),
+        // onDeleted: () {},
       ),
     );
 
-
-
     final person = Row(
-        children: [
-          Image(image: AssetImage('assets/alucard.jpg'), width: 50,),
-          Column(
-        children: [Padding(
-      padding: EdgeInsets.only(top: 10.0, right: 10.0, left: 20),
-      child: Text(
-        'Ardel Unknown',
-        style: TextStyle(fontSize: 20.0, color: Colors.blueGrey),
-      ),
-    ),
-
-    Padding(
-      padding: EdgeInsets.only(right: 10.0, left: 15),
-      child: Text(
-        'Brgy Villamonte, Spice Kitchen',
-        style: TextStyle(fontSize: 12.0, color: Colors.blueGrey),
-      ),
-    ),
-    ],
-    ),
-      Image(image: AssetImage('assets/stars.png'), width: 100,),
-    ],
+      children: [
+        Image(
+          image: AssetImage('assets/alucard.jpg'),
+          width: 50,
+        ),
+        Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 10.0, right: 10.0, left: 20),
+              child: Text(
+                'Ardel Unknown',
+                style: TextStyle(fontSize: 20.0, color: Colors.blueGrey),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 10.0, left: 15),
+              child: Text(
+                'Brgy Villamonte, Spice Kitchen',
+                style: TextStyle(fontSize: 12.0, color: Colors.blueGrey),
+              ),
+            ),
+            StarRating(
+              size: 25.0,
+              rating: rating,
+              color: Colors.orange,
+              borderColor: Colors.grey,
+              starCount: starCount,
+            ),
+          ],
+        ),
+      ],
     );
 
     final comment = Padding(
       padding: EdgeInsets.only(right: 10.0, top: 10.0),
       child: Text(
         'I went there and I liked it very much. Awesome!I went there'
-            'and I liked it very much. Awesome!'
-            'I went there and I liked it very much. Awesome!'
-            'I went there and I liked it very much',
+        'and I liked it very much. Awesome!'
+        'I went there and I liked it very much. Awesome!'
+        'I went there and I liked it very much',
         style: TextStyle(fontSize: 12.0, color: Colors.blueGrey),
       ),
     );
-
-    final tag = Padding(
-      padding: EdgeInsets.only(left: 230),
-        child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-      padding: EdgeInsets.all(8),
-      color: Colors.orange,
-      child: Text('Restaurants', style: TextStyle(color: Colors.white)),
-        ),
-    );
-
 
     final body = Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(28.0),
       child: Column(
-        children: <Widget>[ratings_and_reviews, ratings, restaurants, hotels_living_space, hospitality, transportation,
-          reviews, addButton, person, comment, tag, SizedBox(height: 40), person, comment, SizedBox(height: 40), person, comment],
+        children: <Widget>[
+          ratings_and_reviews_title,
+          ratings,
+          restaurants,
+          hotels_living_space,
+          hospitality,
+          transportation,
+          reviews,
+          addButton,
+          person,
+          comment,
+          SizedBox(height: 50),
+          person,
+          comment,
+          SizedBox(height: 50),
+          person,
+          comment
+        ],
       ),
     );
 
@@ -204,7 +209,6 @@ class HomePage extends StatelessWidget {
       ),
     );
 
-
 //    final body = Container(
 //      width: MediaQuery.of(context).size.width,
 //      padding: EdgeInsets.all(28.0),
@@ -220,25 +224,24 @@ class HomePage extends StatelessWidget {
 //    );
 
     return Scaffold(
-
       appBar: AppBar(
         iconTheme: new IconThemeData(color: Colors.blueGrey),
         backgroundColor: Colors.white,
-          actions: <Widget>[
-            Container(
-              margin: const EdgeInsets.only(right: 20.0),
-              width: 35.0,
-              child: IconButton(
-                icon: IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    color: Colors.blueGrey,
-                  ),
+        actions: <Widget>[
+          Container(
+            margin: const EdgeInsets.only(right: 20.0),
+            width: 35.0,
+            child: IconButton(
+              icon: IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.blueGrey,
                 ),
-                onPressed: (){},
               ),
+              onPressed: () {},
             ),
-          ],
+          ),
+        ],
       ),
       drawer: Padding(
         padding: const EdgeInsets.only(top: 80.0),
@@ -249,7 +252,8 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(top: 0.0, left: 20.0),
-                  child: Text("Welcome First Name",
+                  child: Text(
+                    "Welcome First Name",
                     style: TextStyle(
                       fontSize: 25.0,
                       fontWeight: FontWeight.w600,
@@ -257,29 +261,12 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-               Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: new  FlatButton(
-                    child: ListTile(
-                    title: new Text("Profile",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                    onPressed: () {
-//                    Navigator.push(
-//                        context,
-//                        MaterialPageRoute(builder: (context) => SignupPage()));
-                    },
-                    ),
-
-                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15.0),
-                  child: new  FlatButton(
+                  child: new FlatButton(
                     child: ListTile(
-                      title: new Text("Subscription",
+                      title: new Text(
+                        "Profile",
                         style: TextStyle(
                           fontSize: 18.0,
                         ),
@@ -291,13 +278,31 @@ class HomePage extends StatelessWidget {
 //                        MaterialPageRoute(builder: (context) => SignupPage()));
                     },
                   ),
-
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15.0),
-                  child: new  FlatButton(
+                  child: new FlatButton(
                     child: ListTile(
-                      title: new Text("FEATURED PLACES",
+                      title: new Text(
+                        "Subscription",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+//                    Navigator.push(
+//                        context,
+//                        MaterialPageRoute(builder: (context) => SignupPage()));
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: new FlatButton(
+                    child: ListTile(
+                      title: new Text(
+                        "FEATURED PLACES",
                         style: TextStyle(
                           fontSize: 18.0,
                           color: Colors.orange,
@@ -310,13 +315,13 @@ class HomePage extends StatelessWidget {
 //                        MaterialPageRoute(builder: (context) => SignupPage()));
                     },
                   ),
-
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15.0),
-                  child: new  FlatButton(
+                  child: new FlatButton(
                     child: ListTile(
-                      title: new Text("Log Out",
+                      title: new Text(
+                        "Log Out",
                         style: TextStyle(
                           fontSize: 18.0,
                           color: Colors.black,
@@ -325,21 +330,16 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
                     },
                   ),
-
                 ),
-                ],
-                ),
-
+              ],
             ),
           ),
         ),
-
-
+      ),
       body: SlidingUpPanel(
         maxHeight: 2000,
         minHeight: 260,
@@ -352,97 +352,120 @@ class HomePage extends StatelessWidget {
         collapsed: Container(
           decoration: BoxDecoration(color: Colors.blueGrey),
           child: Column(
-              children: [Row(
-              children: [
-              Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget> [
-              Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Text('Bacolod City',
-              style: TextStyle(color: Colors.white, fontFamily: 'Nunito', fontSize: 28, fontWeight: FontWeight.w600),
-              ),
-            ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50),
-                child: Text('Safety Level:',
-                  style: TextStyle(color: Colors.white, fontFamily: 'Nunito', fontSize: 20),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 140),
-                child: Text('90%',
-                  style: TextStyle(color: Colors.yellowAccent, fontFamily: 'Nunito', fontSize: 40),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50),
-                child: Text('Tourist Density:',
-                  style: TextStyle(color: Colors.white, fontFamily: 'Nunito', fontSize: 20),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 140),
-                child: Text('10,000',
-                  style: TextStyle(color: Colors.yellowAccent, fontFamily: 'Nunito', fontSize: 20),
-                ),
-              ),
-        ],
-          ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Row(
                 children: [
-                Padding(
-                padding: EdgeInsets.only(left: 75, top: 15),
-                child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(24),
-                ),
-                onPressed: ()  {
-
-                },
-                  padding: EdgeInsets.all(12),
-                  color: Colors.white,
-                  child: Text('Heat Map', style: TextStyle(color: Colors.blueGrey)),
-                ),
-                ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 75, top: 15),
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Text(
+                          'Bacolod City',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Nunito',
+                              fontSize: 28,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
-                      onPressed: ()  {
-
-                      },
-                      padding: EdgeInsets.all(12),
-                      color: Colors.white,
-                      child: Text('Icons Map', style: TextStyle(color: Colors.blueGrey)),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 50),
+                        child: Text(
+                          'Safety Level:',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Nunito',
+                              fontSize: 20),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 140),
+                        child: Text(
+                          '90%',
+                          style: TextStyle(
+                              color: Colors.yellowAccent,
+                              fontFamily: 'Nunito',
+                              fontSize: 40),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 50),
+                        child: Text(
+                          'Tourist Density:',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Nunito',
+                              fontSize: 20),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 140),
+                        child: Text(
+                          '10,000',
+                          style: TextStyle(
+                              color: Colors.yellowAccent,
+                              fontFamily: 'Nunito',
+                              fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 75, top: 15),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          onPressed: () {},
+                          padding: EdgeInsets.all(12),
+                          color: Colors.white,
+                          child: Text('Heat Map',
+                              style: TextStyle(color: Colors.blueGrey)),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 75, top: 15),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          onPressed: () {},
+                          padding: EdgeInsets.all(12),
+                          color: Colors.white,
+                          child: Text('Icons Map',
+                              style: TextStyle(color: Colors.blueGrey)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    width: 800,
+                    height: 50,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: Text(
+                        'REVIEWS AND RATINGS',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ),
                 ],
-                ),
-
-          ],
+              ),
+            ],
           ),
-          Column(
-            children: [
-              Container(
-            width: 800,
-            height: 50,
-            color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: Text('REVIEWS AND RATINGS', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w600),),
-                ),
-          ),
-          ],
-          ),
-              ],
         ),
-    ),
         body: Center(child: Text('dwadwd')),
-        ),
+      ),
     );
   }
 }
