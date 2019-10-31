@@ -415,26 +415,26 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 75, top: 15),
+                        padding: EdgeInsets.only(top: 15),
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24),
                           ),
                           onPressed: () {},
-                          padding: EdgeInsets.all(12),
+                          padding: EdgeInsets.all(5),
                           color: Colors.white,
                           child: Text('Heat Map',
                               style: TextStyle(color: Colors.blueGrey)),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 75, top: 15),
+                        padding: EdgeInsets.only(left: 45, top: 15),
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24),
                           ),
                           onPressed: () {},
-                          padding: EdgeInsets.all(12),
+                          padding: EdgeInsets.all(1),
                           color: Colors.white,
                           child: Text('Icons Map',
                               style: TextStyle(color: Colors.blueGrey)),
