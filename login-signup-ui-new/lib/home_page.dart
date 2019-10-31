@@ -10,7 +10,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final ratings_and_reviews_title = Padding(
       padding: EdgeInsets.only(top: 20.0),
       child: Text(
@@ -113,9 +112,18 @@ class HomePage extends StatelessWidget {
 
     final addButton = Padding(
       padding: EdgeInsets.only(left: 200.0),
-      child: Chip(
-        label: Text('ADD'),
-        // onDeleted: () {},
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+        padding: EdgeInsets.all(12),
+        color: Colors.blueGrey,
+        child: Text('ADD', style: TextStyle(color: Colors.white)),
+        onPressed: () {
+//          Navigator.push(
+//              context,
+//              MaterialPageRoute(builder: (context) => Add()));
+        },
       ),
     );
 
